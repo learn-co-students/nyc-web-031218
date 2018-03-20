@@ -1,7 +1,8 @@
-class User
+class Flight
 
   attr_reader :username
 
+  ALL = []
 
   def initialize(username)
     @username = username
@@ -11,11 +12,17 @@ class User
     Tweet.new(message, self)
   end
 
-  def tweets
+  def tickets
     ## look at all of the Tweets
     ## collect only the tweets associated to this user
-    Tweet.all.select do |tweet|
-      tweet.user == self
+    Ticket.all.select do |tweet|
+      tw.user == self
+    end
+  end
+
+  def manifest
+    self.ticket.collect do |ticket|
+
     end
   end
 

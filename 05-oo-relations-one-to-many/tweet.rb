@@ -1,6 +1,6 @@
-class Tweet
+class Ticket
 
-  attr_reader :message, :user
+  attr_reader :message, :user, :
 
   ALL = []
 
