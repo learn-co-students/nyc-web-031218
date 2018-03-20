@@ -6,13 +6,14 @@
 4. Click the tab that says 'Execute SQL'. Type SQL queries in the box above. Press the play button. See the results of that query in the box below
 
 
-## What is SQL
+## What SQL
 Structured Querying Language
+Allows us to query databases
 
-## What does it do
-It allows us to traverse relational databases
-A language that is used to communicate with relational databases
-Perform CRUD on data in the database- Create, Read, Update, Delete
+What can we do with SQL
+Create tables
+Update tables
+Read tables
 
 ## Challenges
 
@@ -25,84 +26,58 @@ SELECT * FROM artists
 2. Write the SQL to select the artist with the name "Black Sabbath"
 
 ```SQL
-SELECT * FROM artists
-WHERE name = "Black Sabbath"
+SELECT * FROM artists WHERE name = "Black Sabbath"
 ```
 
 3. Write the SQL to create a table named 'fans' with an autoincrementing ID that's a primary key and a name field of type text
 
-```sql
+```SQL
 CREATE TABLE fans (
   id INTEGER PRIMARY KEY,
   name TEXT
 )
 ```
 
-4. Write the SQL to alter the fans table to have a artist_id column type integer?
+4. Write the SQL to alter the fans table to have a artist_id column type integer
 
-```sql
-ALTER TABLE fans ADD COLUMN artist_id TEXT
+```SQL
+ALTER TABLE fans ADD COLUMN artist_id INTEGER;
 ```
 
 5. Write the SQL to add yourself as a fan of the Black Eyed Peas? ArtistId **169**
 
-```sql
-INSERT INTO fans (name, artist_id) VALUES ("Natalie", 169)
+```SQL
+
 ```
 
 6. Check out the [Faker gem](https://github.com/stympy/faker). `gem install faker`, open up irb, run `require 'faker'` and then generate a fake name for yourself using `Faker::Name.name`. How would you update your name in the fans table to be your new name?
 
-   ```sql
-   UPDATE fans
-   SET name = 'Alfred Schmidt'
-   WHERE id = 2;
+   ```SQL
+   UPDATE fans SET name = 'Graham' where id = 1
    ```
 
 7. Write the SQL to return fans that are not fans of the black eyed peas.
 
-```sql
-SELECT * FROM fans
-WHERE artist_id != 169
-
-```
-or
-```sql
-SELECT * FROM fans WHERE artist_id != (SELECT ArtistId FROM artists WHERE name = "Black Eyed Peas")
+```SQL
+  select * from fans where artist_id not in (select artistid from artists where artists.name like "black eyed %")
 ```
 
 8. Write the SQL to display an artists name next to their album title
+  select artists.name, albums.Title from artists  join albums on  artists.ArtistId = albums.artistid
+```SQL
 
-```sql
-SELECT artists.name, albums.title
-FROM artists
-INNER JOIN albums
-ON artists.ArtistId = albums.ArtistId
 ```
 
 9. Write the SQL to display artist name, album name and number of tracks on that album
 
-```sql
-SELECT artists.name, albums.title, COUNT(tracks.TrackId)
-FROM artists
-INNER JOIN albums
-ON artists.ArtistId = albums.ArtistId
-INNER JOIN tracks
-ON tracks.AlbumId = albums.AlbumId
-GROUP BY albums.AlbumID
+```SQL
+
 ```
 
 10. Write the SQL to return the name of all of the artists in the 'Pop' Genre
 
-```sql
-SELECT artists.name, genres.name
-FROM artists
-INNER JOIN albums
-ON artists.ArtistId = albums.ArtistId
-INNER JOIN tracks
-ON albums.AlbumId = tracks.AlbumId
-INNER JOIN genres
-ON tracks.GenreID = genres.GenreID
-WHERE genres.Name = "Pop"
+```SQL
+
 ```
 
 ## BONUS (very hard)
@@ -113,6 +88,6 @@ WHERE genres.Name = "Pop"
     in order of the number of rock tracks that they have
     from greatest to least
 
-```sql
+```SQL
 
 ```
