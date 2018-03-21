@@ -12,7 +12,7 @@ end
 ```
 rake db:create_migration NAME=create_model
 ```
-```
+```ruby
 def change
   create_table :models do |t|
     t.string :name
