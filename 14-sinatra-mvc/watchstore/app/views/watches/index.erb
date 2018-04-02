@@ -1,0 +1,6 @@
+<h1>All of our watches are premium grade, please spend all your money here</h1>
+<ul>
+  <% @watches.each do |watch| %>
+      <li><%= watch.name %> | $<%= watch.price %></li>
+  <% end %>
+</ul>
