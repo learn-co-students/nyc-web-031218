@@ -1,0 +1,19 @@
+<form action="/books" method="post">
+  <input type="text" placeholder="Title" name="book[title]" />
+  <input type="text" placeholder="Snippet" name="book[snippet]" />
+
+  <select name="book[author_id]">
+    <% @authors.each do |author| %>
+      <option value="<%= author.id %>" >
+        <%= author.first_name %> <%= author.last_name %>
+      </option>
+    <% end %>
+  </select>
+  
+<!-- IF YOU WANT TO CREATE A NEW AUTHOR AT THE SAME TIME (NESTED FORM)
+  <input type="text" placeholder="Author First Name" name="author[first_name]" />
+  <input type="text" placeholder="Author Last Name" name="author[last_name]" /> -->
+
+
+  <input type="submit" value="Save New Book" />
+</form>

@@ -1,0 +1,11 @@
+<form action="/authors/<%= @author.id %>" method="post">
+  <input type="hidden" name="_method" value="patch" />
+  <input type="text" placeholder="First Name" name="a[first_name]" value="<%= @author.first_name %>" />
+  <input type="text" placeholder="Put the last name here" name="a[last_name]" value="<%= @author.last_name %>" />
+  <input type="submit" value="Save Author" />
+</form>
+
+<form action="/authors/<%= @author.id %>" method="post" />
+  <input type="hidden" name="_method" value="delete" />
+  <input type="submit" value="Delete this Author" />
+</form>

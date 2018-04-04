@@ -1,0 +1,25 @@
+<form action="/users/<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="patch" />
+  <input type="text" placeholder="Username" name="user[username]" value="<%= @user.username %>" />
+
+  <% @books.each do |book| %>
+    <div>
+      <input type="checkbox"
+        id="book<%= book.id %>"
+        name="book_ids[]"
+        value=<%= book.id %>
+        <% if @user.books.include?(book) %>
+          checked
+        <% end %>
+      >
+      <label for="book<%= book.id %>"><%= book.title %></label>
+    </div>
+  <% end %>
+
+  <input type="submit" value="Update User" />
+</form>
+
+<form action="/users/<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="delete" />
+  <input type="submit" value="Delete User" />
+</form>

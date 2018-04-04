@@ -1,0 +1,11 @@
+<h1><%= @user.username %> is Reading:</h1>
+
+<ul>
+  <% @user.books.each do |book| %>
+    <li><a href="/books/<%= book.id %>"><%= book.title %></a></li>
+  <% end %>
+</ul>
+<br />
+
+<a href="/users">All Users</a>
+<a href="/users/<%= @user.id %>/edit">Edit this user</a>

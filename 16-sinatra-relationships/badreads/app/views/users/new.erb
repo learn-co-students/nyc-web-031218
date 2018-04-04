@@ -1,0 +1,12 @@
+<form action="/users" method="post">
+  <input type="text" placeholder="Username" name="user[username]" />
+
+  <% @books.each do |book| %>
+    <div>
+      <input type="checkbox" id="book<%= book.id %>" name="book_ids[]" value=<%= book.id %>>
+      <label for="book<%= book.id %>"><%= book.title %></label>
+    </div>
+  <% end %>
+
+  <input type="submit" value="Create User" />
+</form>
