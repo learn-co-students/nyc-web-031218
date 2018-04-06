@@ -1,0 +1,7 @@
+<h1>Hello Bagels</h1>
+
+<ul>
+  <% @bagels.each do |bagel| %>
+    <li><%= link_to bagel.name, "/bagels/#{bagel.id}" %> | <%= bagel.rating %>/10</li>
+  <% end %>
+</ul>
