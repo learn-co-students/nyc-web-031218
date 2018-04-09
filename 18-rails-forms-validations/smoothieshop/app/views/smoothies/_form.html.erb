@@ -1,0 +1,15 @@
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @smoothie do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: "Name", id: "rishi" %>
+  <%= f.label :price %>
+  <%= f.text_field :price, placeholder: "Price" %>
+  <%= f.submit %>
+<% end %>

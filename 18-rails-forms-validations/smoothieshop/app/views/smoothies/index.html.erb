@@ -1,0 +1,6 @@
+<h1>Get yer smoothies here</h1>
+<ul>
+  <% @smoothies.each do |smoothie| %>
+    <li><%= link_to smoothie.name, smoothie %></li>
+  <% end %>
+</ul>
