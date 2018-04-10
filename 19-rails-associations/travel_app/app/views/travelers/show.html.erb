@@ -1,0 +1,10 @@
+<%= @traveler.name %>
+
+<% if !@traveler.visas.empty? %>
+  <h3>Visas</h3>
+  <ul>
+    <% @traveler.visas.each do |visa| %>
+      <li><%= link_to visa.country, visa %></li>
+    <% end %>
+  </ul>
+<% end %>

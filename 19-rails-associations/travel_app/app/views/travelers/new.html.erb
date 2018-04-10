@@ -1,0 +1,7 @@
+<%= render "errors/flash_errors" %>
+
+<%= form_for @traveler do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
