@@ -1,0 +1,13 @@
+<%= @city.name %>
+
+<% if @city.travelers %>
+  <h3>Visitors:</h3>
+  <ul>
+    <% @city.travelers.each do |traveler| %>
+      <li><%= link_to traveler.name, traveler %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<br />
+<%= link_to "Back to All Cities", cities_path %>

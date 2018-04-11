@@ -1,0 +1,5 @@
+<%= render "form" %>
+
+<%= form_tag city_path(@city), method: "delete" do %>
+  <%= submit_tag "Delete City" %>
+<% end %>

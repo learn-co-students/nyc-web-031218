@@ -1,0 +1,10 @@
+<%= render "errors/flash_errors" %>
+
+<%= form_for @visa do |f| %>
+  <%= f.label :country %>
+  <%= f.text_field :country %>
+  <%= f.collection_select :traveler_id, @travelers, :id, :name %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "All Visas", visas_path %>

@@ -1,0 +1,8 @@
+<h1>Visas</h1>
+<%= link_to "New Visa", new_visa_path %>
+
+<ul>
+  <% @visas.each do |visa| %>
+    <li><%= link_to visa.country, visa %> for <%= visa.traveler.name %></li>
+  <% end %>
+</ul>

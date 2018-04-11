@@ -1,0 +1,5 @@
+<%= render "form" %>
+
+<%= form_tag traveler_path(@traveler), method: "delete" do %>
+  <%= submit_tag "Delete Traveler" %>
+<% end %>

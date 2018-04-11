@@ -1,0 +1,22 @@
+<%= @traveler.name %>
+
+<% if !@traveler.visas.empty? %>
+  <h3>Visas</h3>
+  <ul>
+    <% @traveler.visas.each do |visa| %>
+      <li><%= link_to visa.country, visa %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @traveler.cities.length > 0 %>
+  <h3>Trips</h3>
+  <ul>
+    <% @traveler.cities.each do |city| %>
+      <li><%= link_to city.name, city %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<br />
+<%= link_to "Back to all Travelers", travelers_path %>
