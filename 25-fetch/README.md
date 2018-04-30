@@ -1,5 +1,8 @@
 # How does fetch work?
 
+## Pre-requisite
+When making a request specifically to `https://httpbin.org/`, you cannot make the request from your `index.html`, you need to run `python -m SimpleHTTPServer` within terminal and open up in the web browser `http://localhost:8000` so you can go to a server implementation of your file. This is why we do `rails s` but that takes us to `http://localhost:3000`.
+
 ## Basics of Fetch
 
 Fetch is how we make network requests to a resource and also how we can write
