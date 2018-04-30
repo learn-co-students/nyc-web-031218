@@ -52,6 +52,6 @@ userForm.addEventListener('submit', function(event){
   .then(response => { return response.json() })
   .then(json => {
      // Output this content
-     console.log(json.data)
+     console.log(JSON.parse(json.data))
   })
 })
