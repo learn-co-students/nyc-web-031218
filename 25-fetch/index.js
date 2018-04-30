@@ -51,7 +51,10 @@ userForm.addEventListener('submit', function(event){
   })
   .then(response => { return response.json() })
   .then(json => {
-     // Output this content
+
+     // This particular API sends us back a JSON string
+     // We need to be sure to parse that JSON string before
+     // using it. `JSON.parse` won't be something we always need to do
      console.log(JSON.parse(json.data))
   })
 })
