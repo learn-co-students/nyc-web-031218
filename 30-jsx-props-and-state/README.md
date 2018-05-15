@@ -328,6 +328,8 @@ Let's take components one step further and explain why I keep saying `render` ne
 - When using classes, React creates instances of our class.
 - As you know from vanilla JS, each instance of a class is different from each other.
 - So the `this` context inside one instance is not the same as another.
+  - You'll eventually see why _this_ is the reason why classes can have `state` and lifecycle methods whereas functional components cannot.
+  - When you use one of the other becomes clear after building out several projects.
 
 ```javascript
 // React creates instances of our classes.
