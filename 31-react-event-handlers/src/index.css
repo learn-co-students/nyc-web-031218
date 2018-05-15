@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.switches {
+  display: flex;
+}
+
+.lightswitch {
+  width: 200px;
+  background-color: navy;
+  height: 200px;
+  margin: auto;
+}
+.lightswitch.on {
+  background-color: yellow;
+}
