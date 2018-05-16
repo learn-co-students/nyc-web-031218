@@ -23,7 +23,6 @@ JSX, Props, and State
 App
   Forms
     ListForm
-      this.props.textField
     TaskForm
   Lists
     ListContainer
@@ -379,7 +378,7 @@ class Link extends React.Component {
   }
 
   render() {
-    const {url, name, capitalize} = this.props; // destructuring
+    const {url, name, capitalize} = this.props; // destructuring    
     return <a href={url}>{capitalize ? this.capitalize(name) : name}</a>
   }
 }
@@ -516,3 +515,259 @@ And that's all we need to know about **components** and **props** for now. Hopef
 - We make components to allow our code to remain readable in a declarative manner at every level of our codebase.
 - We understand where `props` come from and how they are related to JSX.
 - With just this basic understanding of components, we can execute **Step 2** of _Thinking in React_.
+
+
+### Thinking About State & Step 3
+
+_We're not going to write any code dealing with `state` yet!!_ The next few steps are all a thought exercise to help you get thinking about React and `state`. I think it's important to go through the steps of thinking, but you can skip to the next section if you'd rather just start seeing code first. Different learning styles for everyone (^ ^)b
+
+**Next Up:** Step 3: Identify The Minimal (but complete) Representation Of UI State
+
+In order to tackle this next step, we finally need to learn about **state**.
+- _class components_ have `state`
+- _functional components_ do not have `state`
+- Keep this in mind when deciding whether or not to use function or class components.
+
+Things we will not talk about yet, but are important parts of `state`:
+- changing state (`setState`)
+- [lifting state up](https://reactjs.org/docs/lifting-state-up.html)
+- event handlers
+- lifecycle methods
+
+Per the docs, we can figure out what is `state` by asking these [three questions](https://reactjs.org/docs/thinking-in-react.html):
+1. Is it passed in from a parent via `props`? If so, it probably isn’t `state`.
+2. Does it remain unchanged over time? If so, it probably isn’t `state`.
+3. Can you compute it based on any other `state` or `props` in your component? If so, it isn’t `state`.
+
+But before we answer those questions for our _Task Lister_ app, what do those questions tell us about the purpose of `state`?
+- (Thinking exercise.)
+
+```
+App
+  Forms
+    ListForm
+    TaskForm
+  Lists
+    ListContainer
+      Task
+```
+
+- `<Task>` gets its information to display from `<ListContainer>` so all `props`.
+- Ditto for `<ListContainer>` and `<Lists>`.
+- `<TaskForm>` has fields that users type into. We need to keep track of this data and it doesn't come from a parent or can be computed. There's some `state` here!
+- Ditto for `<ListForm>`.
+- `<Forms>` however just group and wrap our forms together. So no `state`.
+- `<App>` is where the data for the `<Lists>` start getting passed down from.
+  - That data can change (lists and tasks can be added and removed).
+  - So there should be some `state` here as well.
+
+In the end, we have different bits of `state` in different components that looks like this:
+
+- `<ListForm>` has `state` for their form fields.
+- `<TaskForm>` has `state` for their form fields.
+- `<App>` has the `state` for the lists and tasks.
+
+This is all thinking though and no code yet. However, it's an exercise that you should do as it helps identify what is `state`, what isn't, and eventually what `state` you'll need to [lift up](https://reactjs.org/docs/lifting-state-up.html). And now onwards to _Step 4: Identify Where Your State Should Live_.
+
+For each piece of state in your application:
+- Identify every component that renders something based on that state.
+- Find a common owner component (a single component above all the components that need the state in the hierarchy).
+- Either the common owner or another component higher up in the hierarchy should own the state.
+- If you can’t find a component where it makes sense to own the state, create a new component simply for holding the state and add it somewhere in the hierarchy above the common owner component.
+
+Is our `state` in the correct places?
+- (thinking exercise)
+- Overall looks good so let's continue.
+- At this point, you should be able to place state in the correct components and pass down the correct data to other components so they can use that data via their `props`.
+  - Try to refactor your code and get this working with dummy data in `state`.
+  - You don't need your `mockData` variable anymore.
+
+
+### State (for real this time)
+
+Now that we know where `state` will live, let's learn about state using a much more scoped down example of a button that continually adds "!" to its name when you click on it.
+- `state` is what will change and that's the button's name
+- so we will have `name` be a part of `state`
+
+```javascript
+// The two ways you'll see state initialized will be like this:
+class Button extends React.Component {
+  // Inside the constructor:
+  // (I'm more used to this syntax so it's what I'll be using.)
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "button",
+    };
+  }
+
+  // Without a constructor as a class field declaration:
+  // https://github.com/tc39/proposal-class-fields
+  /*
+  state = {
+    name: "button",
+  };
+  */
+
+  // Now we can access the properties in state similar to props like so:
+  render() {
+    return (
+      <button>{this.state.name}</button>
+    )
+  }
+}
+```
+
+We could have also initialized `state` using values that the component received via `props`:
+
+```javascript
+// Not necessarily in ReactDOM.render,
+// but anywhere where we use our custom Button component.
+ReactDOM.render(
+  <Button name="button" />,
+  document.getElementById('root')
+);
+
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: this.props.button,
+    };
+  }
+
+  render() {
+    return (
+      <button>{this.state.name}</button>
+    )
+  }
+}
+```
+
+However, that's wholely uninteresting. `state` should be something we can change. Let's change `state`!
+
+```javascript
+// Back to our original example to keep things simple:
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "button",
+    };
+  }
+
+  // First thought would be to do this:
+  addExclamation() {
+    this.state.name += "!";
+  }
+
+  // Then just let onClick, note the camelCase, run our function.
+  render() {
+    return (
+      <button onClick={this.addExclamation}>{this.state.name}</button>
+    )
+  }
+}
+```
+
+But that won't work! Nothing changed! Why?
+- `state` is supposed to be _immutable_.
+- So how do we change it?
+  - Changing `state` must be done through `setState`.
+  - `setState` will tell React to check for changes and _schedule_ an update if needed.
+  - Keyword: schedule. That should reveal to you that `setState` is asynchronous so don't expect it to happen immediately. Otherwise you'll run into unexpected issues later!
+
+`setState` works by merging the the object it receives with the current `state`.
+
+```javascript
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "button",
+    };
+  }
+
+  // Now using setState:
+  addExclamation() {
+    const newName = this.state.name + "!";
+    this.setState({ name: newName });
+  }
+
+  render() {
+    return (
+      <button onClick={this.addExclamation}>{this.state.name}</button>
+    )
+  }
+}
+```
+
+Great! Let's run it now!
+- Wait... `undefined`? Why?
+
+```javascript
+// We're passing the function block here so it can be run later somewhere else.
+// That means it won't be running in the context of our Button anymore.
+// It will be in the context of wherever we are running our function.
+onClick={this.addExclamation}
+```
+
+How can we solve this? Remember back to scope and `this` in mod 3.
+- Solution 1: `bind`
+
+  ```javascript
+  class Button extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        name: "button",
+      };
+
+      // Solution 1: by binding
+      this.addExclamation = this.addExclamation.bind(this);
+    }
+
+    addExclamation() {
+      const newName = this.state.name + "!";
+      this.setState({ name: newName });
+    }
+
+    render() {
+      return (
+        <button onClick={this.addExclamation}>{this.state.name}</button>
+      )
+    }
+  }
+  ```
+
+- Solution 2: arrow functions
+
+  ```javascript
+  class Button extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        name: "button",
+      };
+    }
+
+    addExclamation = () => {
+      const newName = this.state.name + "!";
+      this.setState({ name: newName });
+    }
+
+    render() {
+      return (
+        <button onClick={this.addExclamation}>{this.state.name}</button>
+      )
+    }
+  }
+  ```
+
+And that's it for `state`! These are the _basics_ you'll need to know that will let you complete _Steps 3 & 4_. Once you're comfortable with changing state locally, you can even venture into _Step 5_!
