@@ -1,0 +1,8 @@
+- What
+  - Higher-order functions
+- How
+  - Border around an element
+- Why
+  - Composition over inheritance
+- Who
+  - Auth
