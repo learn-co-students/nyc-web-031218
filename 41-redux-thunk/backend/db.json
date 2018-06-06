@@ -1,0 +1,154 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "a",
+      "password": "123",
+      "token": "asdfasdfdsfadsf"
+    },
+    {
+      "id": 2,
+      "username": "b",
+      "password": "123",
+      "token": "asdfgsthggtr"
+    },
+    {
+      "id": 3,
+      "username": "c",
+      "password": "123",
+      "token": "asdfgtrdjyutjaeg"
+    },
+    {
+      "id": 4,
+      "username": "d",
+      "password": "123",
+      "token": "rtheyjhraergeag"
+    },
+    {
+      "id": 5,
+      "username": "e",
+      "password": "123",
+      "token": "sadfgafgahrghadfg"
+    },
+    {
+      "id": 6,
+      "username": "f",
+      "password": "123",
+      "token": "srhtjrehagfdasdg"
+    },
+    {
+      "id": 7,
+      "username": "g",
+      "password": "123",
+      "token": "dsfgfdghdfsgafsdf"
+    }
+  ],
+  "boardgames": [
+    {
+      "id": 1,
+      "name": "The Settlers of Catan",
+      "genre": {
+        "id": 1,
+        "name": "strategy"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Monopoly",
+      "genre": {
+        "id": 2,
+        "name": "negotiation"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Chess",
+      "genre": {
+        "id": 3,
+        "name": "tactics"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Dominion",
+      "genre": {
+        "id": 4,
+        "name": "planning"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Checkers",
+      "genre": {
+        "id": 3,
+        "name": "tactics"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Battleship",
+      "genre": {
+        "id": 1,
+        "name": "strategy"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Candy Land",
+      "genre": {
+        "id": 5,
+        "name": "racing"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Operation",
+      "genre": {
+        "id": 6,
+        "name": "dexterity"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Sorry!",
+      "genre": {
+        "id": 5,
+        "name": "racing"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Axis & Allies",
+      "genre": {
+        "id": 1,
+        "name": "strategy"
+      }
+    }
+  ],
+  "genres": [
+    {
+      "id": 1,
+      "name": "strategy"
+    },
+    {
+      "id": 2,
+      "name": "negotiation"
+    },
+    {
+      "id": 3,
+      "name": "tactics"
+    },
+    {
+      "id": 4,
+      "name": "planning"
+    },
+    {
+      "id": 5,
+      "name": "racing"
+    },
+    {
+      "id": 6,
+      "name": "dexterity"
+    }
+  ]
+}
